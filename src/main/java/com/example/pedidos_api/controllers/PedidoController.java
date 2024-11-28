@@ -30,15 +30,26 @@ public class PedidoController {
     @Autowired
     PedidoService pedidoService;
 
-    @PostMapping()
-    @Operation(summary = "Cria um novo pedido", description = "Contém as operações para criar o pedido", responses = {
+    @Operation(summary = "Apenas processa e cria um novo pedido", description = "Contém as operações para criar o pedido", responses = {
             @ApiResponse(responseCode = "201", description = "Pedido criado com sucesso", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Pedido.class)))
     })
-    public ResponseEntity<Pedido> criarPedido(@RequestBody Pedido pedido) {
+    @PostMapping()
+    public ResponseEntity<Pedido> processarPedido(@RequestBody Pedido pedido) {
 
         pedido = pedidoService.processarPedido(pedido);
 
         logger.info("Pedido recebido: {}", pedido.toString());
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(pedido);
+    }
+
+    @PostMapping("/enfileirar")
+    @Operation(summary = "Processa, cria e envia para a fila do rabbitMQ um novo pedido", description = "Contém as operações para criar e enviar o pedido", responses = {
+            @ApiResponse(responseCode = "201", description = "Pedido criado com sucesso", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Pedido.class)))
+    })
+    public ResponseEntity<Pedido> processarEEnfileirar(@RequestBody Pedido pedido) {
+
+        pedido = pedidoService.enfileirarPedido(pedido);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(pedido);
     }

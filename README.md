@@ -2,7 +2,7 @@
 
 # Sobre a API
 
-Este microsserviço é faz parte do projeto de mensageria utilizando o rabbitMQ, e se comunica com mais dois microsserviços: o de notificação do pedido (https://github.com/kauannr/rabbitMQ-API-notificacao) e o de processamento do pedido (https://github.com/kauannr/rabbitMQ-API-processamento).
+Este microsserviço faz parte do projeto de mensageria utilizando o rabbitMQ, e se comunica com mais dois microsserviços: o de notificação do pedido (https://github.com/kauannr/rabbitMQ-API-notificacao) e o de processamento do pedido (https://github.com/kauannr/rabbitMQ-API-processamento).
 A funcionalidade dessa API, como o nome sugere, é a criação de pedidos de um cliente, contendo os itens do pedido, produto, valor de cada produto, a quantidade, o subtotal e o email para notificar o cliente.
 
 # Exemplo de Json na requisição

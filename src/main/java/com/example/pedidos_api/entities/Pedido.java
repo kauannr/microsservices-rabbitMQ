@@ -1,5 +1,6 @@
 package com.example.pedidos_api.entities;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Data
-public class Pedido {
+public class Pedido implements Serializable{
 
     private UUID id = UUID.randomUUID();
     private String cliente;
